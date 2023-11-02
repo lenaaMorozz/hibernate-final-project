@@ -1,6 +1,7 @@
 package com.mer.dao;
 
 import com.mer.domain.Country;
+import jakarta.persistence.Query;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.SessionFactory;
@@ -14,7 +15,6 @@ public class CountryDAO {
 
     public List<Country> getAll() {
         return sessionFactory.getCurrentSession()
-                .createQuery("select c from Country c", Country.class)
-                .list();
+                .createQuery("select c from Country c join fetch c.languages", Country.class).list();
     }
 }
