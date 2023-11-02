@@ -13,16 +13,20 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "city", schema = "world")
+
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "name", length = 35)
-    private String name = "";
+    private int id;
+
+    private String name;
+
     @ManyToOne
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
-    @Column(name = "district", length = 20)
-    private String district = "";
-    private Integer population = 0;
+
+    private String district;
+
+    private int population;
+
 }
